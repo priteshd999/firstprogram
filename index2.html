@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <div class="nav_bar">
+        <div>
+            <img src="https://i.pinimg.com/736x/73/9a/d4/739ad4f69b21ba2d2e0dc927a31e22eb.jpg" id="sp1" alt="Logo">
+        </div>
+        <div class="nav_search">
+            <select class="search-select" id="search-select" onchange="updateInput()">
+                <option value="">All</option>
+                <option value="Product 1">Product 1</option>
+                <option value="Product 2">Product 2</option>
+                <option value="Product 3">Product 3</option>
+                <option value="Product 4">Product 4</option>
+            </select>
+            <input id="search-input" placeholder="Search" class="search-input">
+            <div class="search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+        <ul>
+            <li>About Us</li>
+            <li>Contact Us</li>
+            <li>Service</li>
+        </ul>
+    </div>
+
+    <div class="container-wrapper">
+        <div class="container">
+            <img src="https://media.lordicon.com/icons/wired/lineal/454-calculator.svg" class="calc-img" alt="Calculator">
+            <a href="calc.html">
+                <button>Calculator</button>
+            </a>
+        </div>
+        <div class="container">
+            <img src="data:image/png;base64,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">
+            <a href="tictachome.html">
+                <button>Tic-Tac-Toe</button>
+            </a>
+        </div>
+        <div class="container">
+            <!-- Additional content for this container -->
+        </div>
+        <div class="container">
+            <!-- Additional content for this container -->
+        </div>
+    </div>
+
+    <script>
+        function updateInput() {
+            var selectedValue = document.getElementById("search-select").value;
+            document.getElementById("search-input").value = selectedValue;
+        }
+    </script>
+</body>
+</html>

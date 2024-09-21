@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - Play vs Computer</title>
+    <link rel="stylesheet" href="tictac.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="scoreboard">
+        <p>Player O Wins: <span id="scoreO">0</span></p>
+        <p>Computer Wins: <span id="scoreX">0</span></p>
+    </div>
+    
+    <div class="msg-container hide">
+        <p id="msg">Winner</p>
+        <button id="new-btn">New Game</button>
+    </div>
+    
+    <main>
+        <h1 style="text-align: center;">Tic Tac Toe vs Computer</h1>
+        <div class="container">
+            <div class="game">
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button id="btn"><b>RESET</b></button>
+            </div>   
+        </div>
+    </main>
+    <script>
+        let boxes = document.querySelectorAll(".box");
+let resetbtn = document.querySelector("#btn");
+let newGameBtn = document.querySelector("#new-btn");
+let msgContainer = document.querySelector(".msg-container");
+let msg = document.querySelector("#msg");
+let scoreO = document.querySelector("#scoreO");
+let scoreX = document.querySelector("#scoreX");
+let turnO = true;
+let winpatterns = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    [0, 4, 8], [2, 4, 6]
+];
+
+let oWins = 0, xWins = 0;
+
+// Event listener for player O's move
+boxes.forEach((box, idx) => {
+    box.addEventListener("click", () => {
+        if (turnO && !box.disabled) {
+            playerMove(box, "O");
+            turnO = false;
+            setTimeout(computerMove, 500); 
+        }
+    });
+});
+const playerMove = (box, symbol) => {
+    box.innerText = symbol;
+    box.classList.add(symbol);
+    box.disabled = true;
+    checkWinner();
+};
+
+// Computer (AI) move
+const computerMove = () => {
+    let moveMade = false;
+
+    // First, check if the computer can win in the next move
+    for (let pattern of winpatterns) {
+        let [a, b, c] = pattern;
+        if (checkPotentialWin(a, b, c, "X")) {
+            moveMade = true;
+            break;
+        }
+    }
+
+    // If the computer can't win, try to block the player's win
+    if (!moveMade) {
+        for (let pattern of winpatterns) {
+            let [a, b, c] = pattern;
+            if (checkPotentialWin(a, b, c, "O")) {
+                moveMade = true;
+                break;
+            }
+        }
+    }
+
+    // If no win or block is possible, pick a random empty box
+    if (!moveMade) {
+        let emptyBoxes = Array.from(boxes).filter(box => box.innerText === "");
+        let randomBox = emptyBoxes[Math.floor(Math.random() * emptyBoxes.length)];
+        playerMove(randomBox, "X");
+    }
+
+    turnO = true;
+};
+
+// Check for potential win or block
+const checkPotentialWin = (a, b, c, symbol) => {
+    let boxA = boxes[a].innerText;
+    let boxB = boxes[b].innerText;
+    let boxC = boxes[c].innerText;
+
+    if (boxA === symbol && boxB === symbol && boxC === "") {
+        playerMove(boxes[c], "X");
+        return true;
+    } else if (boxA === symbol && boxC === symbol && boxB === "") {
+        playerMove(boxes[b], "X");
+        return true;
+    } else if (boxB === symbol && boxC === symbol && boxA === "") {
+        playerMove(boxes[a], "X");
+        return true;
+    }
+
+    return false;
+};
+const checkWinner = () => {
+    for (let pattern of winpatterns) {
+        let [a, b, c] = pattern;
+        let box1 = boxes[a].innerText;
+        let box2 = boxes[b].innerText;
+        let box3 = boxes[c].innerText;
+
+        if (box1 !== "" && box1 === box2 && box2 === box3) {
+            boxes[a].classList.add("winner-highlight");
+            boxes[b].classList.add("winner-highlight");
+            boxes[c].classList.add("winner-highlight");
+            showWinner(box1);
+            return;
+        }
+    }
+
+    // Check if all boxes are filled (tie)
+    if (Array.from(boxes).every(box => box.innerText !== "")) {
+        msg.innerText = "It's a Tie!";
+        msgContainer.classList.remove("hide");
+        disableBoxes();
+    }
+};
+
+// Show winner and update scores
+const showWinner = (winner) => {
+    if (winner === "O") {
+        msg.innerText = "Congratulations, Player O Wins!";
+        oWins++;
+        scoreO.innerText = oWins;
+    } else {
+        msg.innerText = "Computer Wins!";
+        xWins++;
+        scoreX.innerText = xWins;
+    }
+    msgContainer.classList.remove("hide");
+    disableBoxes();
+};
+
+// Disable all boxes
+const disableBoxes = () => {
+    boxes.forEach(box => box.disabled = true);
+};
+
+// Enable all boxes and reset
+const enableBoxes = () => {
+    boxes.forEach(box => {
+        box.disabled = false;
+        box.innerText = "";
+        box.classList.remove("winner-highlight");
+    });
+    turnO = true;
+};
+
+// Reset game
+const resetGame = () => {
+    enableBoxes();
+    msgContainer.classList.add("hide");
+};
+
+// Reset buttons
+resetbtn.addEventListener("click", resetGame);
+newGameBtn.addEventListener("click", resetGame);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PRITESH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+    </style>
+    <link rel="stylesheet" href="mysheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <div class="nav">
+    <div class="nav-content">
+      <div class="menu-button">
+        <i class="fa fa-bars"></i>
+      </div>
+      <div class="nav-links">
+        <a href="#home" onclick="homebtn()">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+      </div>
+    </div>
+  </div>
+  <div id="sp2">
+    <i class="fa-solid fa-toggle-on" id="icon"></i></div>
+<header>
+  <h1 class="welcome">Welcome to PRITESH Website</h1>
+  <p>Hi, I'm pritesh, and this is my personal space on the web. Here you'll find my work, hobbies, and a bit about my life.</p>
+</header>
+<section id="skills">
+  <h2>Skills & Expertise</h2>
+  <ul>
+      <li>Web Development: HTML, CSS, JavaScript</li>
+      <li>Programming: Python, Java</li>
+      <li>AI/ML Enthusiast</li>
+      <li>Graphic Design: Photoshop, Figma</li>
+  </ul>
+</section>
+<section id="projects">
+  <h2>My Projects</h2>
+  <ul>
+      <li><a href="#">Calculator</a> - Description of the project.</li>
+      <li><a href="#">Tic-Tac-Toe</a> - Description of the project.</li>
+      <li><a href="#">Project 3</a> - Description of the project.</li>
+  </ul>
+</section>
+<button onclick="document.getElementById('authModal').style.display='block'" style="width:auto;" id="login"><strong>Login</strong></button>
+<div id="authModal" class="modal">
+  <!-- Login Form -->
+  <div id="loginForm" class="modal-content animate">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('authModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001882.png" alt="Avatar" class="avatar">
+    </div>
+    <div class="container">
+      <h2 style="text-align:center">Login with Social Media or Manually</h2>
+      <div class="social-login">
+        <a href="#" class="fb btn">
+          <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+        </a>
+        <a href="#" class="twitter btn">
+          <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+        </a>
+        <a href="#" class="google btn">
+          <i class="fa fa-google fa-fw"></i> Login with Google
+        </a>
+      </div>
+
+      <hr>
+
+      <!-- Manual Login Form -->
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" id="login-username" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" id="login-password" required>
+        
+      <button type="submit" onclick="login()">Login</button>
+      
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('authModal').style.display='none'" class="cancelbtn">Cancel</button>
+        <span class="psw">Forgot <a href="#" onclick="openForgotPasswordModal()">password?</a></span>
+      </div>
+      <div class="container" style="background-color:#f1f1f1">
+        <span class="createbtn">Create<a href="#"onclick="switchToCreateAccount()"> Account?</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Account Form -->
+  <div id="createAccountForm" class="modal-content animate" style="display:none;">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('authModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+      <h2 style="text-align:center">Create Account</h2>
+      
+      <label for="mo_no"><b>Mobile Number</b></label>
+      <input type="tel" placeholder="Enter Mobile Number" name="mo_no" required pattern="[0-9]{10}"><br>
+
+      <label for="email"><b>Email</b></label>
+      <input type="email" placeholder="Enter Email" name="email" required><br>
+
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required id="password">
+
+      <label for="re-psw"><b>Confirm Password</b></label>
+      <input type="password" placeholder="Confirm Password" name="re-psw" required id="re-password" oninput="checkPasswordMatch()">
+      <span id="password_match"></span>
+
+      <button type="submit" onclick="createAccount()">Create Account</button>
+
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('authModal').style.display='none'" class="cancelbtn">Cancel</button>
+        <span class="loginbtn"> have an account?<a href="#" onclick="switchToLogin()"> Login</a></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div id="forgotPasswordModal" class="modal">
+  <form class="modal-content animate" onsubmit="return sendOTP()" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('forgotPasswordModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+      <label for="mo_no"><b>Mobile Number</b></label>
+      <input type="tel" placeholder="Enter Mobile Number" name="mo_no" required pattern="[0-9]{10}"><br>
+
+      <label for="otp"><b>Enter OTP</b></label>
+      <input type="text" placeholder="Enter OTP" name="otp" required><br>
+
+      <button type="submit">Submit</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('forgotPasswordModal').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<!-- Reset Password Modal -->
+<div id="resetPasswordModal" class="modal">
+  <form class="modal-content animate" onsubmit="return resetPassword()" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('resetPasswordModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+      <label for="new-psw"><b>New Password</b></label>
+      <input type="password" placeholder="Enter New Password" name="new-psw" id="new-password" required><br>
+
+      <label for="re-new-psw"><b>Confirm New Password</b></label>
+      <input type="password" placeholder="Confirm New Password" name="re-new-psw" id="re-new-password" required oninput="checkNewPasswordMatch()"><br>
+
+      <span id="new_password_match"></span>
+
+      <button type="submit">Reset Password</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('resetPasswordModal').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  function login() {
+    var username = document.getElementById("login-username").value;
+    var password = document.getElementById("login-password").value;
+
+    if (username === "admin" && password === "12345") {
+        window.location.href = "index2.html"; 
+        return false; 
+    } else {
+        alert("Invalid username or password");
+        return false;
+    }
+}
+
+function createAccount() {
+    var password = document.getElementById("password").value;
+    var confirmPassword = document.getElementById("re-password").value;
+
+    if (password === confirmPassword) {
+        alert("Account created successfully!");
+        switchToLogin(); 
+        return false;
+    } else {
+        alert("Passwords do not match.");
+        return false; 
+    }
+}
+
+function switchToCreateAccount() {
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('createAccountForm').style.display = 'block';
+}
+
+function switchToLogin() {
+    document.getElementById('createAccountForm').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'block';
+}
+
+function openForgotPasswordModal() {
+    document.getElementById('forgotPasswordModal').style.display = 'block';
+}
+
+function sendOTP() {
+    alert("OTP sent to your mobile number.");
+    document.getElementById('forgotPasswordModal').style.display = 'none';
+    document.getElementById('resetPasswordModal').style.display = 'block';
+    return false; 
+}
+
+function checkNewPasswordMatch() {
+    var newPassword = document.getElementById("new-password").value;
+    var reNewPassword = document.getElementById("re-new-password").value;
+    if (newPassword != reNewPassword) {
+        document.getElementById("new_password_match").innerHTML = "Passwords do not match";
+    } else {
+        document.getElementById("new_password_match").innerHTML = "";
+    }
+}
+
+function checkPasswordMatch() {
+    var password = document.getElementById("password").value;
+    var confirmPassword = document.getElementById("re-password").value;
+    if (password != confirmPassword) {
+        document.getElementById("password_match").innerHTML = "Passwords do not match";
+    } else {
+        document.getElementById("password_match").innerHTML = "";
+    }
+}
+
+window.onclick = function(event) {
+    var authModal = document.getElementById('authModal');
+    var forgotPasswordModal = document.getElementById('forgotPasswordModal');
+    var resetPasswordModal = document.getElementById('resetPasswordModal');
+    
+    if (event.target == authModal) {
+        authModal.style.display = "none";
+    } else if (event.target == forgotPasswordModal) {
+        forgotPasswordModal.style.display = "none";
+    } else if (event.target == resetPasswordModal) {
+        resetPasswordModal.style.display = "none";
+    }
+}
+</script>
+<footer class="footer">
+  <h2>Contact Me</h2>
+  <p>Feel free to <a href="mailto:pritesh@example.com">email me</a> or connect on <a href="https://www.linkedin.com/in/pritesh-deshmukh-47a1142a4">LinkedIn</a>.</p>
+  
+  <div class="net">
+      <div class="crc">
+          <a href="https://www.instagram.com/_p_r_i_t_e_s_h_999/" class="fa fa-instagram"></a>
+      </div>
+      <div class="crc">
+          <a href="https://wa.me/919405633854" class="fa fa-whatsapp"></a>
+      </div>
+      <div class="crc">
+          <a href="https://www.linkedin.com/in/pritesh-deshmukh-47a1142a4" class="fa fa-linkedin"></a>
+      </div>
+      <div class="crc">
+          <a href="https://web.telegram.org/a/" class="fa fa-telegram"></a>
+      </div>
+      <div class="crc">
+          <a href="#" class="fa fa-twitter"></a>
+      </div>
+  </div>
+  
+  <p>&copy; 2024 PRITESH. All Rights Reserved.</p>
+</footer>
+
+
+</body>
+</html>

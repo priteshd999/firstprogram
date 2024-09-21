@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - Home</title>
+    <link rel="stylesheet" href="tictachome.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <h1 class="title">Welcome to Tic Tac Toe</h1>
+        <div class="mode-selection">
+            <button id="player-vs-player" class="mode-btn">Player vs Player</button>
+            <button id="player-vs-computer" class="mode-btn">Player vs Computer</button>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById("player-vs-player").addEventListener("click", function() {
+            window.location.href = "tictac.html"; // Page for Player vs Player mode
+        });
+
+        document.getElementById("player-vs-computer").addEventListener("click", function() {
+            window.location.href = "tictacai.html"; // Page for Player vs Computer mode
+        });
+       
+    </script>
+</body>
+</html>

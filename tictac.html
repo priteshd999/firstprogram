@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Tic Tac Toe</title>
+    <link rel="stylesheet" href="tictac.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="scoreboard">
+        <p>Player O Wins: <span id="scoreO">0</span></p>
+        <p>Player X Wins: <span id="scoreX">0</span></p>
+    </div>
+    
+    <div class="msg-container hide">
+        <p id="msg">Winner</p>
+        <button id="new-btn">New Game</button>
+    </div>
+    
+    <main>
+        <h1 style="text-align: center;">Tic Tac Toe</h1>
+        <div class="container">
+            <div class="game">
+                <!-- Use only class for selecting all buttons -->
+                <button onclick="playSound()" class="box"></button>
+                <button onclick="playSound()" class="box"></button>
+                <button onclick="playSound()" class="box"></button>
+                <button onclick="playSound()" class="box"></button>
+                <button onclick="playSound()" class="box"></button>
+                <button onclick="playSound()" class="box"></button>
+                <button onclick="playSound()" class="box"></button>
+                <button onclick="playSound()" class="box"></button>
+                <button onclick="playSound()" class="box"></button>
+                <button onclick="playSound()" id="btn"><b>RESET</b></button>
+                <audio id="clickSound">
+                    <source src="clicked/clicksound.mp3" preload="auto">
+                </audio>
+
+            </div>   
+        </div>
+    </main>
+    <script>
+        let boxes = document.querySelectorAll(".box");
+        let resetbtn = document.querySelector("#btn");
+        let newGameBtn = document.querySelector("#new-btn");
+        let msgContainer = document.querySelector(".msg-container");
+        let msg = document.querySelector("#msg");
+        let scoreO = document.querySelector("#scoreO");
+        let scoreX = document.querySelector("#scoreX");
+        let turnO = true;
+        let winpatterns = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
+        ];
+    
+        let oWins = 0, xWins = 0;
+    // Play sound function
+function playClickSound() {
+    var clickSound = document.getElementById("clickSound");
+    clickSound.currentTime = 0; // Reset sound in case it is played multiple times quickly
+    clickSound.play();
+}
+
+// Add event listener to each box for sound and marking O/X
+boxes.forEach((box) => {
+    box.addEventListener("click", () => {
+        if (!box.innerText) { // Check if the box is not already clicked
+            if (turnO) {
+                box.innerText = "O";
+                box.classList.add("o");
+            } else {
+                box.innerText = "X";
+                box.classList.add("x");
+            }
+            box.disabled = true;
+            playClickSound();  // Play click sound on each click
+            checkWinner();
+            turnO = !turnO;
+        }
+    });
+});
+
+// Play sound on reset button click
+resetbtn.addEventListener("click", () => {
+    playClickSound();  // Play sound when the game is reset
+    resetGame();
+});
+
+    
+        const disableBoxes = () => {
+            boxes.forEach(box => box.disabled = true);
+        };
+    
+        const enableBoxes = () => {
+            boxes.forEach(box => {
+                box.disabled = false;
+                box.innerText = "";
+                box.classList.remove("winner-highlight");
+            });
+        };
+    
+        const showWinner = (winner) => {
+            msg.innerText = `Congratulations, ${winner} Wins!`;
+            msgContainer.classList.remove("hide");
+            disableBoxes();
+    
+            if (winner === "O") {
+                oWins++;
+                scoreO.innerText = oWins;
+            } else {
+                xWins++;
+                scoreX.innerText = xWins;
+            }
+    
+            confettiEffect();
+        };
+    
+        const checkWinner = () => {
+            winpatterns.forEach(pattern => {
+                let [a, b, c] = pattern;
+                let box1 = boxes[a].innerText;
+                let box2 = boxes[b].innerText;
+                let box3 = boxes[c].innerText;
+    
+                if (box1 && box1 === box2 && box2 === box3) {
+                    boxes[a].classList.add("winner-highlight");
+                    boxes[b].classList.add("winner-highlight");
+                    boxes[c].classList.add("winner-highlight");
+                    showWinner(box1);
+                }
+            });
+        };
+    
+        const resetGame = () => {
+            turnO = true;
+            enableBoxes();
+            msgContainer.classList.add("hide");
+        };
+        
+        resetbtn.addEventListener("click", () => {
+            playClickSound();  // Play sound when the game is reset
+            resetGame();
+        });
+        
+        newGameBtn.addEventListener("click", resetGame);
+    
+        const confettiEffect = () => {
+            alert("🎉 Confetti Effect! (This can be replaced with actual confetti)");
+        };
+    </script>
+    
+</body>
+</html>

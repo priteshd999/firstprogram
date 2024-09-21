@@ -1,0 +1,333 @@
+body{
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRhvdYpZtloile8GB6Z-Czr3ox2fXH1Wb6Rw&s);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 12cm;
+}
+.nav {
+  width: 100%;
+  height: 60px;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding-top: 1%;
+}
+.nav a{
+  margin-right: 50px;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+.menu-button {
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 15px;
+  font-size: 16px;
+}
+
+.nav-links a:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+.welcome{
+  text-align: center;
+  padding-top: 5%;
+  background: linear-gradient(rgb(234, 41, 41), rgb(102, 227, 102), rgb(48, 48, 178));
+  -webkit-background-clip: text;
+  color: transparent;
+
+}
+
+#login{
+  border-radius: 10px;
+    position: absolute;
+    top: 70px;
+    right: 20px; 
+    padding: 10px 20px; 
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+#login:hover {
+  opacity: 0.8;
+}
+
+/* Navbar CSS remains unchanged */
+
+
+input[type=text], input[type=password],input[type=tel],input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: #20a9b3;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+  }
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+  }
+  
+  img.avatar {
+    width: 20%;
+    border-radius: 50%;
+  }
+  img.pritesh_img{
+    width: 20%;
+    border-radius: 50%;
+  }
+  
+  .container {
+    padding: 16px;
+  }
+  .bottom-contain {
+    text-align: center;
+    background-color: #666;
+    border-radius: 0px 0px 4px 4px;
+  }
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .col {
+    float: left;
+    width: 50%;
+    margin: auto;
+    padding: 0 50px;
+    margin-top: 6px;
+  }
+  
+  .c1 {
+    position: relative;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px 0 30px 0;
+  } 
+  
+  input,
+  .btn {
+    width: 95%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    margin: 5px 0;
+    opacity: 0.85;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 20px;
+    text-decoration: none;
+  }
+  
+  input:hover,
+  .btn:hover {
+    opacity: 1;
+  }
+  
+  .fb {
+    background-color: #3B5998;
+    color: white;
+  }
+  
+  .twitter {
+    background-color: #55ACEE;
+    color: white;
+  }
+  
+  .google {
+    background-color: #dd4b39;
+    color: white;
+  }
+  
+  input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }  
+  
+  span.psw {
+    float: right;
+    padding-top: 16px;
+  }
+  .modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    padding-top: 60px;
+  }
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; 
+    border: 1px solid #888;
+    width: 80%; 
+  }
+  .close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: red;
+    cursor: pointer;
+  }
+  
+  .animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+  }
+  
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+  }
+    
+  @keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+  }
+  #sp2{
+    background-color: #ce9999;
+    border: 2px solid pink;
+    height: 20px;
+    width: 40px;
+  }
+  
+  .crc {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid wheat;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .crc:hover {
+    background-color: #333;
+    transform: scale(1.3);
+  }
+  
+  .crc a {
+    font-size: 24px;
+    color: #ccc;
+  }
+  
+  .crc a:hover {
+    color: #fff;
+  }
+  .footer {
+    background-color: #333;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+    font-size: 16px;
+    border-top: 5px solid #20a9b3;
+}
+
+.footer h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #20a9b3;
+}
+
+.footer p {
+    margin-bottom: 15px;
+}
+
+.footer a {
+    color: #20a9b3;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.footer .net {
+    margin: 20px auto;  /* Centering the .net div */
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: fit-content; /* Makes the width only as wide as the content */
+}
+
+.footer .crc {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #444;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.footer .crc:hover {
+    background-color: #20a9b3;
+    transform: scale(1.2);
+}
+
+.footer .crc a {
+    font-size: 22px;
+    color: white;
+    transition: color 0.3s;
+}
+
+.footer .crc a:hover {
+    color: white;
+}
